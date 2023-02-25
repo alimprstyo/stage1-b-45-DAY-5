@@ -97,22 +97,26 @@ const showData = () => {
     document.getElementById('posting').innerHTML = data
     for(let i = 0; i < datas.length; i++){
         document.getElementById('posting').innerHTML += `
-            <div class="card" >
-                <img src="${datas[i].image}" alt="post" >
-                <h4>${datas[i].projectName}</h4>
-                <span>Duration : ${getTime(datas[i].startDate , datas[i].endDate)} </span>
-                <p>${datas[i].description}</p>
-                <div class="technologyIcon">
-                    ${datas[i].nodejs ? '<img src="./assets/img/nodejs.svg" alt="nodejs">' : ''}
-                    ${datas[i].reactjs ? '<img src="./assets/img/reactjs.svg" alt="reactjs">' : ''}
-                    ${datas[i].nextjs ? '<img src="./assets/img/nextjs.svg" alt="nextjs">' : ''}
-                    ${datas[i].typescript ? '<img src="./assets/img/typescript.svg" alt="typescript">' : ''}
+            <a href="blog-detail.html">
+                <div class="card" >
+                    <img src="${datas[i].image}" alt="post" >
+                    <h4>${datas[i].projectName}</h4>
+                    <span>Duration : ${getTime(datas[i].startDate , datas[i].endDate)} </span>
+                    <p>${datas[i].description}</p>
+                    <div class="technologyIcon">
+                        ${datas[i].nodejs ? '<img src="./assets/img/nodejs.svg" alt="nodejs">' : ''}
+                        ${datas[i].reactjs ? '<img src="./assets/img/reactjs.svg" alt="reactjs">' : ''}
+                        ${datas[i].nextjs ? '<img src="./assets/img/nextjs.svg" alt="nextjs">' : ''}
+                        ${datas[i].typescript ? '<img src="./assets/img/typescript.svg" alt="typescript">' : ''}
+                    </div>
+                    <div class="action">
+                        <button>edit</button>
+                        <button>delete</button>
+                    </div>
                 </div>
-                <div class="action">
-                    <button>edit</button>
-                    <button>delete</button>
-                </div>
-            </div>`
+            </a>
+
+            `
     }
 }
 
