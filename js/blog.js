@@ -65,29 +65,25 @@ const getData = (event) => {
     let reactjs = document.getElementById('reactjs')
     let typescript = document.getElementById('typescript')
     let image = document.getElementById('image').files
- 
-    if(image.length == 0 ) {
-        return alert('Upload image is required')
-    }else{
-        image = URL.createObjectURL(image[0])
-    }
-    
+
     if(projectName == '' || projectName == null) return alert('Project name is required')
     if(startDate == '' || startDate == null) return alert('Date is required')
     if(endDate == '' || endDate == null) return alert('Date is required')
+    if(endDate <= startDate) return alert('invalid date')
     if(description == '' || description == null) return alert(' Description is required')
     if(!nodejs.checked && !nextjs.checked && !reactjs.checked && !typescript.checked) return alert('Technologies is required')
-    if(endDate <= startDate) return alert('invalid date')
+    if(image.length == 0 ) return alert('Upload image is required') 
+    image = URL.createObjectURL(image[0])
 
     let data = {
         projectName,
         startDate, 
         endDate,
         description, 
-        nodejs : nodejs.checked == true ? true : false,
-        nextjs : nextjs.checked == true ? true : false,
-        reactjs : reactjs.checked == true ? true : false,
-        typescript : typescript.checked == true ? true : false,
+        nodejs : nodejs.checked ? true : false,
+        nextjs : nextjs.checked ? true : false,
+        reactjs : reactjs.checked ? true : false,
+        typescript : typescript.checked ? true : false,
         image
     }
     datas.push(data)
@@ -122,13 +118,16 @@ const showData = () => {
 
 const getTime = (startDate, endDate) => {
     let distance = new Date(endDate) - new Date(startDate)
-
     const milisecond = 1000
     const second = 60
     const hour = 60
     const day = 24
     const week = 7
     const month = 4
+    const year = 12
+
+    let yearDistance = Math.floor( distance / ( year * month * week * day * hour * second * milisecond ))
+    if( yearDistance >= 1) return `${yearDistance} Year`
 
     let monthDistance = Math.floor( distance / (month * week * day * hour * second * milisecond))
     if(monthDistance >= 1) return `${monthDistance} Month`
@@ -139,13 +138,13 @@ const getTime = (startDate, endDate) => {
     let dayDistance = Math.floor( distance / (day * hour * second * milisecond ))
     if(dayDistance >= 1) return `${dayDistance} Day`
 
-    let hourDistance = Math.floor( distance / (hour * second * milisecond ))
-    if(hourDistance >= 1) return `${hourDistance} Hour`
+    // let hourDistance = Math.floor( distance / (hour * second * milisecond ))
+    // if(hourDistance >= 1) return `${hourDistance} Hour`
 
-    let minuteDistance  = Math.floor( distance / (second * milisecond ))
-    if(minuteDistance >= 1) return `${minuteDistance} Minute`
+    // let minuteDistance  = Math.floor( distance / (second * milisecond ))
+    // if(minuteDistance >= 1) return `${minuteDistance} Minute`
 
-    let secondDistance = Math.floor( distance / milisecond )
-    if(secondDistance >= 1) return `${secondDistance} Second`
+    // let secondDistance = Math.floor( distance / milisecond )
+    // if(secondDistance >= 1) return `${secondDistance} Second`
 
 }   

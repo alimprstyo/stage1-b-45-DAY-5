@@ -70,6 +70,7 @@ li {
 .dateInput {
     display: grid;
     grid-template-columns: auto auto;
+    gap: 10px;
 }
 #startDate:disabled{
     border: 1px solid #ccc;
